@@ -1771,8 +1771,6 @@ function App() {
       
       {currentView === 'home' && renderHome()}
       {currentView === 'profile' && renderProfile()}
-      {currentView === 'my-notes' && renderMyNotes()}
-      {currentView === 'my-purchases' && renderMyPurchases()}
       {currentView === 'upload' && renderUpload()}
       {currentView === 'upload-success' && renderUploadSuccess()}
       {currentView === 'search' && renderSearch()}
