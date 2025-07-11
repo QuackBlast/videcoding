@@ -1731,28 +1731,6 @@ function App() {
                   >
                     Profil
                   </button>
-                  {currentView === 'profile' && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
-                      <button
-                        onClick={() => setCurrentView('my-notes')}
-                        className="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-t-lg"
-                      >
-                        Mina anteckningar
-                      </button>
-                      <button
-                        onClick={() => setCurrentView('my-purchases')}
-                        className="w-full text-left px-4 py-2 hover:bg-gray-50"
-                      >
-                        Köpta anteckningar
-                      </button>
-                      <button
-                        onClick={() => setCurrentView('profile')}
-                        className="w-full text-left px-4 py-2 hover:bg-gray-50 rounded-b-lg"
-                      >
-                        Inställningar
-                      </button>
-                    </div>
-                  )}
                 </div>
                 <button
                   onClick={handleLogout}
