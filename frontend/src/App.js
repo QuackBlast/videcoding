@@ -850,15 +850,22 @@ function App() {
     if (!profileStats.earnings && profileStats.earnings !== 0) {
       loadProfileData();
     }
+    if (myNotes.length === 0) {
+      loadMyNotes();
+    }
+    if (myPurchases.length === 0) {
+      loadMyPurchases();
+    }
 
     return (
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-3xl font-bold mb-8 text-blue-600">Min profil</h2>
         
-        <div className="grid md:grid-cols-3 gap-6">
-          {/* Profile Info */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          
+          {/* 1. My Profile Section */}
           <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-4 text-blue-600">Profilinformation</h3>
+            <h3 className="text-xl font-semibold mb-4 text-blue-600">👤 Min profil</h3>
             <form onSubmit={handleUpdateProfile}>
               <div className="mb-4">
                 <label className="block text-sm font-medium mb-2">Namn</label>
@@ -867,7 +874,19 @@ function App() {
                   value={profileData.name}
                   onChange={(e) => setProfileData({...profileData, name: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Ditt namn"
                 />
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-2">E-post</label>
+                <input
+                  type="email"
+                  value={user?.email || ''}
+                  disabled
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500"
+                />
+                <p className="text-xs text-gray-500 mt-1">E-post kan inte ändras</p>
               </div>
               
               <div className="mb-4">
@@ -877,6 +896,7 @@ function App() {
                   value={profileData.university}
                   onChange={(e) => setProfileData({...profileData, university: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Ditt universitet"
                 />
               </div>
               
@@ -887,6 +907,7 @@ function App() {
                   value={profileData.current_password}
                   onChange={(e) => setProfileData({...profileData, current_password: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Ange ditt nuvarande lösenord för att ändra"
                 />
               </div>
               
@@ -897,6 +918,7 @@ function App() {
                   value={profileData.new_password}
                   onChange={(e) => setProfileData({...profileData, new_password: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Nytt lösenord (lämna tomt för att behålla)"
                 />
               </div>
               
@@ -907,6 +929,7 @@ function App() {
                   value={profileData.confirm_password}
                   onChange={(e) => setProfileData({...profileData, confirm_password: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Bekräfta nytt lösenord"
                 />
               </div>
               
@@ -919,30 +942,113 @@ function App() {
               </button>
             </form>
           </div>
-          
-          {/* Revenue Dashboard */}
+
+          {/* 2. Uploads Section */}
           <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-4 text-blue-600">Intäkter</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Totalt intjänat:</span>
-                <span className="font-semibold">{profileStats.earnings.toFixed(2)} kr</span>
+            <h3 className="text-xl font-semibold mb-4 text-blue-600">📚 Mina uppladdningar</h3>
+            
+            {/* User Statistics */}
+            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">{profileStats.notes_uploaded}</div>
+                  <div className="text-sm text-gray-600">Anteckningar uppladdade</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">{myNotes.reduce((sum, note) => sum + note.downloads, 0)}</div>
+                  <div className="text-sm text-gray-600">Totala försäljningar</div>
+                </div>
               </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Uttaget:</span>
-                <span className="font-semibold">{profileStats.withdrawn.toFixed(2)} kr</span>
-              </div>
-              
-              <div className="flex justify-between items-center border-t pt-4">
-                <span className="text-gray-600 font-semibold">Tillgängligt saldo:</span>
-                <span className="font-bold text-green-600">{profileStats.available_balance.toFixed(2)} kr</span>
+            </div>
+
+            {/* Uploaded Notes List */}
+            <div className="max-h-96 overflow-y-auto">
+              {myNotes.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  <p>Inga uppladdade anteckningar ännu</p>
+                  <button
+                    onClick={() => setCurrentView('upload')}
+                    className="mt-2 text-blue-600 hover:underline"
+                  >
+                    Ladda upp din första anteckning
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {myNotes.map((note) => (
+                    <div key={note.id} className="border rounded-lg p-3 hover:bg-gray-50">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-blue-600">{note.title}</h4>
+                          <div className="text-sm text-gray-600">
+                            <span className="mr-4">📅 {new Date(note.created_at).toLocaleDateString('sv-SE')}</span>
+                            <span className="mr-4">📖 {note.course_code}</span>
+                            <span className="mr-4">💰 {note.price === 0 ? 'Gratis' : `${note.price} kr`}</span>
+                            <span className="text-green-600">📊 {note.downloads} försäljningar</span>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 ml-4">
+                          {!note.is_deleted && (
+                            <>
+                              <button
+                                onClick={() => handleEditNote(note)}
+                                className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded hover:bg-blue-200"
+                              >
+                                Redigera
+                              </button>
+                              <button
+                                onClick={() => handleDeleteNote(note.id)}
+                                className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded hover:bg-red-200"
+                              >
+                                Ta bort
+                              </button>
+                            </>
+                          )}
+                          <button
+                            onClick={() => handleNoteClick(note.id)}
+                            className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded hover:bg-gray-200"
+                          >
+                            Visa
+                          </button>
+                        </div>
+                      </div>
+                      {note.is_deleted && (
+                        <span className="inline-block mt-2 bg-red-100 text-red-800 text-xs px-2 py-1 rounded">
+                          Borttagen
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 3. Payouts Section */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h3 className="text-xl font-semibold mb-4 text-blue-600">💰 Utbetalningar</h3>
+            
+            {/* Financial Overview */}
+            <div className="space-y-4 mb-6">
+              <div className="bg-green-50 rounded-lg p-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-gray-600">Totalt intjänat:</span>
+                  <span className="text-2xl font-bold text-green-600">{profileStats.earnings.toFixed(2)} kr</span>
+                </div>
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-gray-600">Uttaget:</span>
+                  <span className="font-semibold text-gray-700">{profileStats.withdrawn.toFixed(2)} kr</span>
+                </div>
+                <div className="flex justify-between items-center pt-2 border-t border-green-200">
+                  <span className="text-gray-600 font-semibold">Tillgängligt saldo:</span>
+                  <span className="text-xl font-bold text-green-700">{profileStats.available_balance.toFixed(2)} kr</span>
+                </div>
               </div>
               
               <button
                 onClick={handleWithdraw}
                 disabled={!profileStats.can_withdraw || loading}
-                className={`w-full py-2 px-4 rounded-lg ${
+                className={`w-full py-3 px-4 rounded-lg font-semibold ${
                   profileStats.can_withdraw 
                     ? 'bg-green-600 text-white hover:bg-green-700' 
                     : 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -957,23 +1063,63 @@ function App() {
                 </p>
               )}
             </div>
-          </div>
-          
-          {/* Stats */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-4 text-blue-600">Statistik</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Anteckningar uppladdade:</span>
-                <span className="font-semibold">{profileStats.notes_uploaded}</span>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600">Anteckningar köpta:</span>
-                <span className="font-semibold">{profileStats.notes_purchased}</span>
+
+            {/* Payout History */}
+            <div className="border-t pt-4">
+              <h4 className="font-semibold mb-2">Utbetalningshistorik</h4>
+              <div className="text-sm text-gray-600">
+                <p>Senaste uttag: {profileStats.withdrawn > 0 ? `${profileStats.withdrawn.toFixed(2)} kr` : 'Inga uttag ännu'}</p>
               </div>
             </div>
           </div>
+
+          {/* 4. My Purchased Notes Section */}
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h3 className="text-xl font-semibold mb-4 text-blue-600">🛒 Mina köpta anteckningar</h3>
+            
+            <div className="max-h-96 overflow-y-auto">
+              {myPurchases.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  <p>Inga köpta anteckningar ännu</p>
+                  <button
+                    onClick={() => setCurrentView('search')}
+                    className="mt-2 text-blue-600 hover:underline"
+                  >
+                    Sök anteckningar
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {myPurchases.map((note) => (
+                    <div key={note.id} className="border rounded-lg p-3 hover:bg-gray-50">
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-blue-600">{note.title}</h4>
+                          <div className="text-sm text-gray-600">
+                            <span className="mr-4">📖 {note.course_code}</span>
+                            <span className="mr-4">📅 Köpt: {new Date(note.purchase_date).toLocaleDateString('sv-SE')}</span>
+                            <span className="text-green-600">💰 {note.price === 0 ? 'Gratis' : `${note.price} kr`}</span>
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            Uppladdare: {note.uploader_name}
+                          </div>
+                        </div>
+                        <div className="flex gap-2 ml-4">
+                          <button
+                            onClick={() => handleNoteClick(note.id)}
+                            className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded hover:bg-blue-200"
+                          >
+                            Visa & ladda ner
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
         </div>
       </div>
     );
