@@ -166,8 +166,8 @@ function App() {
         const data = await response.json();
         setProfileStats(data);
         setProfileData({
-          name: data.name,
-          university: data.university,
+          name: data.name || '',
+          university: data.university || '',
           current_password: '',
           new_password: '',
           confirm_password: ''
