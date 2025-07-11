@@ -1,4 +1,4 @@
-/* Custom styles for the Student Platform */
+/* Swedish Student Platform Styles - Blue & White Theme */
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,11 +6,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f9fafb;
+  background-color: #f8fafc;
+  color: #1f2937;
 }
 
 .container {
   max-width: 1200px;
+}
+
+/* Blue & White Theme Variables */
+:root {
+  --primary-blue: #1e40af;
+  --primary-blue-light: #3b82f6;
+  --primary-blue-dark: #1e3a8a;
+  --secondary-blue: #60a5fa;
+  --light-blue: #dbeafe;
+  --accent-blue: #2563eb;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --success-green: #059669;
+  --error-red: #dc2626;
+  --warning-yellow: #d97706;
 }
 
 /* Animation for loading states */
@@ -33,71 +54,297 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--gray-100);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--primary-blue-light);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--primary-blue);
 }
 
-/* Hover effects for cards */
-.card-hover {
+/* Swedish Blue Theme Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+  border: none;
+  color: var(--white);
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-blue-dark) 0%, var(--primary-blue) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(30, 64, 175, 0.3);
+}
+
+.btn-secondary {
+  background: var(--white);
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background: var(--light-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Card styles with blue accents */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border-top: 4px solid var(--primary-blue);
 }
 
-.card-hover:hover {
+.card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Custom button styles */
-.btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Navigation with blue theme */
+.nav-button {
+  background: var(--primary-blue);
+  color: var(--white);
   border: none;
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn-secondary {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  border: none;
-  transition: all 0.3s ease;
-}
-
-.btn-secondary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
-}
-
-/* File upload styling */
-.file-upload-area {
-  border: 2px dashed #cbd5e0;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.file-upload-area:hover {
-  border-color: #667eea;
-  background-color: #f7fafc;
+.nav-button:hover {
+  background: var(--primary-blue-dark);
+  transform: translateY(-1px);
 }
 
-.file-upload-area.dragover {
-  border-color: #667eea;
-  background-color: #ebf8ff;
+.nav-button-outline {
+  background: transparent;
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-/* Rating stars */
+.nav-button-outline:hover {
+  background: var(--light-blue);
+  transform: translateY(-1px);
+}
+
+/* Form styling with blue theme */
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--gray-300);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: var(--white);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+/* Swedish color scheme for different elements */
+.swedish-blue {
+  background: var(--primary-blue);
+  color: var(--white);
+}
+
+.swedish-blue-light {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+}
+
+.swedish-white {
+  background: var(--white);
+  color: var(--text-dark);
+}
+
+/* Success and error messages */
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #d1fae5;
+  border: 1px solid #a7f3d0;
+  color: var(--success-green);
+}
+
+.alert-error {
+  background-color: #fee2e2;
+  border: 1px solid #fecaca;
+  color: var(--error-red);
+}
+
+.alert-info {
+  background-color: var(--light-blue);
+  border: 1px solid var(--secondary-blue);
+  color: var(--primary-blue);
+}
+
+/* Modal styling with blue theme */
+.modal-overlay {
+  background-color: rgba(30, 64, 175, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--gray-200);
+}
+
+/* Profile stats cards */
+.stats-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--primary-blue);
+}
+
+.stats-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+}
+
+.stats-label {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Revenue/earnings styling */
+.earnings-card {
+  background: linear-gradient(135deg, var(--success-green) 0%, #10b981 100%);
+  color: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.earnings-amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.earnings-label {
+  opacity: 0.9;
+  font-size: 0.875rem;
+}
+
+/* Withdraw button styling */
+.withdraw-button {
+  background: var(--success-green);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.withdraw-button:hover:not(:disabled) {
+  background: #047857;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(5, 150, 105, 0.3);
+}
+
+.withdraw-button:disabled {
+  background: var(--gray-300);
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+/* Note cards with Swedish blue accents */
+.note-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border-top: 4px solid var(--primary-blue);
+  transition: all 0.3s ease;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.note-title {
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.note-price {
+  color: var(--success-green);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.note-price.free {
+  color: var(--primary-blue);
+}
+
+/* AI results styling */
+.ai-summary {
+  background: var(--light-blue);
+  border-left: 4px solid var(--primary-blue);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.flashcard-container {
+  background: #ecfdf5;
+  border-left: 4px solid var(--success-green);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.quiz-container {
+  background: #faf5ff;
+  border-left: 4px solid #8b5cf6;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* Rating stars with Swedish colors */
 .rating-stars {
   display: flex;
   gap: 2px;
@@ -109,187 +356,36 @@ body {
 }
 
 .rating-star.empty {
-  color: #d1d5db;
+  color: var(--gray-300);
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* Responsive design helpers */
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  .grid-responsive {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Success and error message styling */
-.alert {
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.alert-success {
-  background-color: #d1fae5;
-  border: 1px solid #a7f3d0;
-  color: #065f46;
-}
-
-.alert-error {
-  background-color: #fee2e2;
-  border: 1px solid #fecaca;
-  color: #991b1b;
-}
-
-/* Modal styling */
-.modal-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal-content {
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-/* Progress bar for uploads */
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background-color: #e5e7eb;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  transition: width 0.3s ease;
-}
-
-/* Flashcard styling */
-.flashcard {
-  perspective: 1000px;
-  height: 200px;
-}
-
-.flashcard-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.flashcard.flipped .flashcard-inner {
-  transform: rotateY(180deg);
-}
-
-.flashcard-front, .flashcard-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.flashcard-front {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-.flashcard-back {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-  transform: rotateY(180deg);
-}
-
-/* Quiz styling */
-.quiz-option {
-  padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.quiz-option:hover {
-  border-color: #667eea;
-  background-color: #f7fafc;
-}
-
-.quiz-option.selected {
-  border-color: #667eea;
-  background-color: #ebf8ff;
-}
-
-.quiz-option.correct {
-  border-color: #10b981;
-  background-color: #d1fae5;
-}
-
-.quiz-option.incorrect {
-  border-color: #ef4444;
-  background-color: #fee2e2;
-}
-
-/* Tag styling */
-.tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background-color: #e5e7eb;
-  color: #374151;
-  border-radius: 9999px;
+/* University and course badges */
+.university-badge {
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
   font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-block;
   margin: 0.25rem;
 }
 
-.tag.primary {
-  background-color: #dbeafe;
-  color: #1e40af;
+.course-badge {
+  background: var(--secondary-blue);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0.25rem;
 }
 
-.tag.secondary {
-  background-color: #fce7f3;
-  color: #be185d;
-}
-
-.tag.success {
-  background-color: #d1fae5;
-  color: #065f46;
-}
-
-/* Loading spinner */
+/* Loading spinner with Swedish blue */
 .spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #667eea;
+  border: 4px solid var(--gray-200);
+  border-top: 4px solid var(--primary-blue);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -302,100 +398,28 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-/* Utility classes */
-.text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-shadow {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.card-shadow-lg {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Custom form styling */
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #374151;
-}
-
-.form-input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-/* Price display */
-.price-display {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #059669;
-}
-
-.price-display.free {
-  color: #7c3aed;
-}
-
-/* University and course badges */
-.university-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.course-badge {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-/* Responsive text */
-@media (max-width: 640px) {
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .grid-responsive {
+    grid-template-columns: 1fr;
+  }
+  
   .text-responsive {
     font-size: 1.5rem;
   }
+  
+  .nav-button, .nav-button-outline {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 769px) {
   .text-responsive {
     font-size: 2rem;
   }
@@ -405,4 +429,137 @@ body {
   .text-responsive {
     font-size: 3rem;
   }
+}
+
+/* Swedish-specific styling */
+.swedish-header {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+  color: var(--white);
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.swedish-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.swedish-hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+/* Process steps styling */
+.process-step {
+  text-align: center;
+  padding: 2rem;
+}
+
+.process-step-number {
+  background: var(--light-blue);
+  color: var(--primary-blue);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--primary-blue);
+}
+
+.process-step-title {
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.process-step-description {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Deleted note styling */
+.deleted-note {
+  opacity: 0.7;
+  border-left-color: var(--error-red);
+}
+
+.deleted-badge {
+  background: #fee2e2;
+  color: var(--error-red);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Profile menu dropdown */
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 50;
+}
+
+.profile-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: var(--text-dark);
+  transition: background-color 0.2s ease;
+  border: none;
+  background: transparent;
+}
+
+.profile-dropdown-item:hover {
+  background: var(--gray-50);
+}
+
+.profile-dropdown-item:first-child {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.profile-dropdown-item:last-child {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* Utility classes for Swedish theme */
+.text-swedish-blue {
+  color: var(--primary-blue);
+}
+
+.bg-swedish-blue {
+  background-color: var(--primary-blue);
+}
+
+.bg-swedish-blue-light {
+  background-color: var(--light-blue);
+}
+
+.border-swedish-blue {
+  border-color: var(--primary-blue);
+}
+
+.shadow-swedish {
+  box-shadow: 0 4px 6px rgba(30, 64, 175, 0.1);
+}
+
+.gradient-swedish {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
 }
